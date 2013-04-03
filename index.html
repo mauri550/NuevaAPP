@@ -46,18 +46,51 @@
                
 
                $.getJSON('datos.json', function(data) {
-                     if (data.users[0].userName==userNameForm && data.users[0].password==passwordForm) {
-                        
-                        var session="autenticado";
-                        var estado="true";
-                        localStorage.setItem(session, estado);
-                         window.location="#page-form1";
-                     }
-                     else{
-                        /*navigator.notification.beep(1)*/
-                        alert("Datos no validos!. Favor Verificar");
 
-                     };
+                var key, count = 0;
+                for(key in data.users) {
+                  if(data.users.hasOwnProperty(key)) {
+                    count++;
+                  }
+                }
+                var i = 0;
+                var error = false;
+                while (i < count ) {
+
+                    if (data.users[i].userName==userNameForm && data.users[i].password==passwordForm) {
+                       
+                       var session="autenticado";
+                       var estado="true";
+                       localStorage.setItem(session, estado);
+                       $("#username").val("");
+                       $("#password").val("");
+                       window.location="#page-form1";
+
+                        break 
+                    }
+                    else{
+                                               
+                        if(i==count-1){
+                            alert("Datos no validos!. Favor Verificar");
+                            break 
+                        }
+                        else{
+                            i++
+                        }
+                           
+                           
+
+                       /*navigator.notification.beep(1)*/
+                        
+                    };
+                       
+
+                    
+                }
+
+                
+
+                 
                });
            });
 
