@@ -17,7 +17,7 @@
 
 	window.requestFileSystem(window.LocalFileSystem.PERSISTENT, 0,
 	    function (fileSystem) {
-	        fileSystem.root.getFile('test.json', {create: true}, 
+	        fileSystem.root.getFile('test.txt', {create: true}, 
 	            function (fileEntry) {
 	                fileEntry.createWriter(function (writer) {
 	                writer.write('this is only a test');
