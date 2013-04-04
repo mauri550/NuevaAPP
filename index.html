@@ -96,6 +96,7 @@
 
                  
                });
+            return false;
            });
 
 
@@ -119,11 +120,26 @@
         </header>
         <article data-role="content">
            
-            <input type="text" name="username" id="username" class="text" maxlength="30" />
-            <br />
-            <input type="password" name="password" id="password" class="text" maxlength="30" />
-            <br />
-            <input type="submit" name="btnSubmit" id="btnSubmit" value="Iniciar Session"/>
+            
+
+            <form name="login" id="login"accept-charset="utf-8">
+
+
+                <div style="width:500px !important;">
+                    <label for="login_usuario" >Usuario: </label>
+                    <input type="text" name="username" id="username" class=" text required" maxlength="30" placeholder="Ingrese su nombre de Usuario"/>
+                </div>
+                <div style="width:500px !important;">
+                    <label for="login_password" >Contraseña: </label>
+                    <input type="password" name="password" id="password" class="text required" maxlength="30" placeholder="Ingrese su Contraseña"/>
+                </div>
+                <fieldset class="ui-grid-a" style="width: 80%">
+                    <div class="ui-block-a"><input type="submit" name="btnSubmit" id="btnSubmit" value="Ingresar"/></div>
+                    <div class="ui-block-b"><input type="reset" name="btnReset" id="btnReset" value="Limpiar"/></div>    
+                </fieldset> 
+
+            </form>
+
             
 
         </article>  
