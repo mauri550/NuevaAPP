@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	var contact = new Object();
+	contact.firstname = "Jesper";
+	contact.surname = "Aaberg";
+	contact.phone = ["555-0100", "555-0120"];
+
+	var memberfilter = new Array();
+	memberfilter[0] = "surname";
+	memberfilter[1] = "phone";
+	var jsonText = JSON.stringify(contact, memberfilter, "\t");
+	document.write(jsonText);
+
+	window.requestFileSystem(window.LocalFileSystem.PERSISTENT, 0,
+	    function (fileSystem) {
+	        fileSystem.root.getFile('test.json', {create: true}, 
+	            function (fileEntry) {
+	                fileEntry.createWriter(function (writer) {
+	                writer.write('this is only a test');
+	            });
+	        },
+	        onError);
+	    },
+	    onError);
+
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
