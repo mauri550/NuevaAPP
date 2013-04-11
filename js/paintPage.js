@@ -14,8 +14,8 @@ RocknCoder.Pages = RocknCoder.Pages || {};
 			// resize the canvas after retrieving the current dimensions
 			reSizeCanvas = function () {
 				var dims = RocknCoder.Dimensions.get();
-				var mywidth = 400;
-				var myheight = 400;
+				var mywidth = "400px";
+				var myheight = "400px";
 
 
 
