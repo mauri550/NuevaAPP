@@ -25,7 +25,7 @@ RocknCoder.Pages = RocknCoder.Pages || {};
 				ctx = canvas.getContext('2d');
 				lineStyle = {
 					strokeStyle: "rgba(250,250,0,1)",
-					lineWidth: 3,
+					lineWidth: 2,
 					lineCap: "round"
 				};
 				$.extend(ctx, lineStyle);
