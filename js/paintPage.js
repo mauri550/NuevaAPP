@@ -14,14 +14,9 @@ RocknCoder.Pages = RocknCoder.Pages || {};
 			// resize the canvas after retrieving the current dimensions
 			reSizeCanvas = function () {
 				var dims = RocknCoder.Dimensions.get();
-				var mywidth = "400px";
-				var myheight = "400px";
-
-
-
 				$canvas.attr({
-					width: mywidth,
-					height: myheight
+					width: dims.width - 4,
+					height: dims.height - 4
 				});
 				return dims;
 			},
@@ -30,7 +25,7 @@ RocknCoder.Pages = RocknCoder.Pages || {};
 				ctx = canvas.getContext('2d');
 				lineStyle = {
 					strokeStyle: "rgba(250,250,0,1)",
-					lineWidth: 2,
+					lineWidth: 3,
 					lineCap: "round"
 				};
 				$.extend(ctx, lineStyle);
