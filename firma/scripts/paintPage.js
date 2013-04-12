@@ -16,8 +16,8 @@ RocknCoder.Pages = RocknCoder.Pages || {};
 				var dims = RocknCoder.Dimensions.get();
 				$canvas.attr({
 
-					width: "400px",
-					height: "300px"
+					width: "600px",
+					height: "400px"
 				});
 				return dims;
 			},
@@ -25,7 +25,7 @@ RocknCoder.Pages = RocknCoder.Pages || {};
 			setContext = function () {
 				ctx = canvas.getContext('2d');
 				lineStyle = {
-					strokeStyle: "rgba(250,250,0,1)",
+					strokeStyle: "rgb(0, 0, 0,1);",
 					lineWidth: 2,
 					lineCap: "round"
 				};
