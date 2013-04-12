@@ -3,7 +3,8 @@
 	<head>
 		<title>Canvas Plugin</title>
 
-		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/phonegap.0.9.5.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/canvas.js"></script>
 		<script type="text/javascript">
 		try {
@@ -29,8 +30,9 @@
 						if (arg.size > 0) {
 							var oImgElement = document.createElement("img");
 							oImgElement.src = arg.data;
-							document.getElementById('img').appendChild(oImgElement);
+							$('#img').append(oImgElement);
 						} else {			
+							//document.getElementById('img').innerHTML(arg.data);
 							alert("Canvas Write Error: " + arg.debug);
 						}
 					}
@@ -41,6 +43,12 @@
 			}
 		} catch(err) { alert(err); }
 		</script>
+		<style type="text/css">
+			#img img {
+				/* border: 1px solid #f00; */
+			}
+			html, body { margin: 0; }
+		</style>
 	</head>
 
 	<body onload="init();">
