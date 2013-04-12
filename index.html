@@ -1,69 +1,43 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Canvas Plugin</title>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="578" height="200" style="display:none;"></canvas>
+    <img id="canvasImg" alt="Right click to save me!">
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
 
-		<script type="text/javascript" charset="utf-8" src="js/phonegap.0.9.5.js"></script>
-		<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-		<script type="text/javascript" charset="utf-8" src="js/canvas.js"></script>
-		<script type="text/javascript">
-		try {
-			var canSave = false;
-			var b_canvas;
-			function init() {
+      // draw cloud
+      context.beginPath();
+      context.moveTo(170, 80);
+      context.bezierCurveTo(130, 100, 130, 150, 230, 150);
+      context.bezierCurveTo(250, 180, 320, 180, 340, 150);
+      context.bezierCurveTo(420, 150, 420, 120, 390, 100);
+      context.bezierCurveTo(430, 40, 370, 30, 340, 50);
+      context.bezierCurveTo(350, 5, 250, 20, 250, 50);
+      context.bezierCurveTo(200, 5, 150, 20, 170, 80);
+      context.closePath();
+      context.lineWidth = 5;
+      context.fillStyle = '#8ED6FF';
+      context.fill();
+      context.strokeStyle = '#000';
+      context.stroke();
 
-				document.addEventListener('deviceready', function() {
-					canSave = true;
-				});
+      // save canvas image as data url (png format by default)
+      var dataURL = canvas.toDataURL();
 
-				b_canvas = document.getElementById('cid');
-				var b_context = b_canvas.getContext('2d');
-				b_context.fillRect(50, 25, 150, 100);
-			}
-			function saveImg() {
+      // set canvasImg image src to dataURL
+      // so it can be saved as an image
+      document.getElementById('canvasImg').src = dataURL;
 
-				if (canSave) {
-
-					window.plugins.canvas.toDataURL(b_canvas, "image/png", success, failure);
-					function success(arg) {
-						
-						if (arg.size > 0) {
-							var oImgElement = document.createElement("img");
-							oImgElement.src = arg.data;
-							$('#img').append(oImgElement);
-						} else {			
-							//document.getElementById('img').innerHTML(arg.data);
-							alert("Canvas Write Error: " + arg.debug);
-						}
-					}
-					function failure(arg) {
-						alert("failure: " + arg);
-					}
-				}
-			}
-		} catch(err) { alert(err); }
-		</script>
-		<style type="text/css">
-			#img img {
-				/* border: 1px solid #f00; */
-			}
-			html, body { margin: 0; }
-		</style>
-	</head>
-
-	<body onload="init();">
-	
-	<div style="width: 700px;">
-	
-		<br/><br/>
-		<a href="#" onclick="saveImg();">SAVE</a>
-		<div id="img" style="float: left; border: 1px dotted;"></div>
-		<br clear="both"/>
-		<div style="margin-top: 630px; float: right;">
-			<canvas id="cid" width="300" height="225"></canvas>
-		</div>
-		
-	</div>
-		
-	</body>
+    </script>
+  </body>
 </html>
