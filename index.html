@@ -1,62 +1,61 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
   <head>
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
+    <title>Canvas Plugin</title>
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/canvas.js"></script>
+    <script type="text/javascript">
+    try {
+      var canSave = false;
+      var b_canvas;
+      function init() {
+
+        document.addEventListener('deviceready', function() {
+          canSave = true;
+        });
+
+        b_canvas = document.getElementById('cid');
+        var b_context = b_canvas.getContext('2d');
+        b_context.fillRect(50, 25, 150, 100);
       }
-    </style>
+      function saveImg() {
+
+        if (canSave) {
+
+          window.plugins.canvas.toDataURL(b_canvas, "image/png", success, failure);
+          function success(arg) {
+            
+            if (arg.size > 0) {
+              var oImgElement = document.createElement("img");
+              oImgElement.src = arg.data;
+              document.getElementById('img').appendChild(oImgElement);
+            } else {      
+              alert("Canvas Write Error: " + arg.debug);
+            }
+          }
+          function failure(arg) {
+            alert("failure: " + arg);
+          }
+        }
+      }
+    } catch(err) { alert(err); }
+    </script>
   </head>
-  <body>
-    <canvas id="myCanvas" width="578" height="200" style="display:none;"></canvas>
-    <img id="canvasImg" alt="Right click to save me!">
-    <script>
-      var canvas = document.getElementById('myCanvas');
-      var context = canvas.getContext('2d');
 
-      // draw cloud
-      context.beginPath();
-      context.moveTo(170, 80);
-      context.bezierCurveTo(130, 100, 130, 150, 230, 150);
-      context.bezierCurveTo(250, 180, 320, 180, 340, 150);
-      context.bezierCurveTo(420, 150, 420, 120, 390, 100);
-      context.bezierCurveTo(430, 40, 370, 30, 340, 50);
-      context.bezierCurveTo(350, 5, 250, 20, 250, 50);
-      context.bezierCurveTo(200, 5, 150, 20, 170, 80);
-      context.closePath();
-      context.lineWidth = 5;
-      context.fillStyle = '#8ED6FF';
-      context.fill();
-      context.strokeStyle = '#000';
-      context.stroke();
-
-      // save canvas image as data url (png format by default)
-      var dataURL = canvas.toDataURL();
-
-      // set canvasImg image src to dataURL
-      // so it can be saved as an image
-      document.getElementById('canvasImg').src = dataURL;
-
-    </script>
-    <script>
-      function saveCanvas() {
-          $('#myCanvas').bind( $bind, function(){
-              stage.toDataURL({
-              callback: function(dataUrl){
-                  window.plugins.base64ToPNG.saveImage(dataUrl.substr(22,dataUrl.length), {}, 
-                      function(result) {
-                          alert(result);
-                      }, function(error) {
-                          alert(error);
-                      }
-                  );
-              },
-                  mimeType: 'image/png',
-                  quality: 0.8
-              });
-          });
-      }
-    </script>
+  <body onload="init();">
+  
+  <div style="width: 700px;">
+  
+    <br/><br/>
+    <a href="#" onclick="saveImg();">SAVE</a>
+    <div id="img" style="float: left; border: 1px dotted;"></div>
+    <br clear="both"/>
+    <div style="margin-top: 630px; float: right;">
+      <canvas id="cid" width="300" height="225"></canvas>
+    </div>
+    
+  </div>
+    
   </body>
 </html>
