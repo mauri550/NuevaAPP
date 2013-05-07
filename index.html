@@ -12,6 +12,10 @@
         document.getElementById("myImg").src = val.data;
       });
     }
+    var canvas = document.getElementById("myCanvas");
+      window.canvasplugin(canvas,function(val){
+        document.getElementById("myImg").src = val.data;
+      });
     </script>
   </head>
 
@@ -21,7 +25,7 @@
   
     <br/><br/>
     <a href="#" onclick="saveImg();">SAVE</a>
-    <img src="myImg" alt="">
+    <img id="myImg" src="" alt="">
     <br clear="both"/>
     
       <canvas id="myCanvas" width="300" height="225" style="background: red;"></canvas>
