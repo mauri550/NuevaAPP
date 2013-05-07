@@ -1,0 +1,28 @@
+<?xml version   ="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "e-marketingevolution.com"
+    versioncode = "1"
+    version     = "1.0.0">
+    
+    <name>Reportes Kimberly</name>
+    
+    <content src="index.html"/>
+    <icon src="icon.png" width="256" height="256" />
+    
+    <description>
+        Reportes Kimberly
+    </description>
+    
+    <author href="e-marketingevolution.com">
+        e-MarketingEvolution
+    </author>
+  
+
+    <!-- for Android -->
+    <preference name="orientation" value="portrait" />
+    <preference name="android-minSdkVersion" value="9" />
+
+    <plugin name="CanvasPlugin" value="org.apache.cordova.plugin.CanvasPlugin"/>
+</widget>
+

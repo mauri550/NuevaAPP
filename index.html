@@ -4,56 +4,27 @@
     <title>Canvas Plugin</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/canvas.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/CanvasPlugin.js"></script>
     <script type="text/javascript">
-    try {
-      var canSave = false;
-      var b_canvas;
-      function init() {
-
-        document.addEventListener('deviceready', function() {
-          canSave = true;
-        });
-
-        b_canvas = document.getElementById('cid');
-        var b_context = b_canvas.getContext('2d');
-        b_context.fillRect(50, 25, 150, 100);
-      }
-      function saveImg() {
-
-        if (canSave) {
-
-          window.plugins.canvas.toDataURL(b_canvas, "image/png", success, failure);
-          function success(arg) {
-            
-            if (arg.size > 0) {
-              var oImgElement = document.createElement("img");
-              oImgElement.src = arg.data;
-              document.getElementById('img').appendChild(oImgElement);
-            } else {      
-              alert("Canvas Write Error: " + arg.debug);
-            }
-          }
-          function failure(arg) {
-            alert("failure: " + arg);
-          }
-        }
-      }
-    } catch(err) { alert(err); }
+    function saveImg() {
+      var canvas = document.getElementById("myCanvas");
+      window.canvasplugin(canvas,function(val){
+        document.getElementById("myImg").src = val.data;
+      });
+    }
     </script>
   </head>
 
-  <body onload="init();">
+  <body>
   
   <div style="width: 700px;">
   
     <br/><br/>
     <a href="#" onclick="saveImg();">SAVE</a>
-    <div id="img" style="float: left; border: 1px dotted;"></div>
+    <div id="myImg"></div>
     <br clear="both"/>
-    <div style="margin-top: 630px; float: right;">
-      <canvas id="cid" width="300" height="225"></canvas>
-    </div>
+    
+      <canvas id="cid" width="300" height="225" style="background: red;"></canvas>
     
   </div>
     
